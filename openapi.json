@@ -1,0 +1,84 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "Example Service"
+    },
+    "paths": {
+    
+        "/v1/presigned-url": {
+            "post": {
+                "tags": [
+                    "ExampleTag"
+                ],
+                "summary": "Create a presigned url",
+                "operationId": "V1Presigned-urlPost",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "X-Company-Auth",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/RequestPresignedUrl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ResponsePresignedUrl"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "StatusV1Response": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "description": "returns the status string",
+                    "type": "string"
+                },
+                "utcDateTime": {
+                    "description": "returns the current utc datetime",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "RequestPresignedUrl": {
+            "type": "object",
+            "properties": {
+                "test": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponsePresignedUrl": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
